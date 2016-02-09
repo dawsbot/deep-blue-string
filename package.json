@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "arrify": "^1.0.1",
+    "gimey": "0.0.0",
     "partial": "0.0.3"
   },
   "devDependencies": {

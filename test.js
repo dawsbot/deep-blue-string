@@ -1,11 +1,7 @@
 import test from 'ava';
 import dbs from './';
 
-const returnFunc = arg1 => {
-  return arg1;
-};
-
-test('#invalidPattern', t => {
+test('#invalidTarget', t => {
   t.throws(() => {
     dbs(false, 'HackCU');
   });
@@ -38,23 +34,23 @@ test('#invalidPattern', t => {
 //   t.is(dbs(returnFunc, 123), 123);
 // });
 
-test('#stringRemove', t => {
+test('#stringFunctions', t => {
   t.is(dbs('UNIcorns', String.prototype.toLowerCase), 'unicorns');
-  // t.is(dbs('unicorns', String.prototype.replace, ['uni', '']), 'corns');
-  // t.is(dbs('a', 'HackCU'), 'HckCU');
+  t.is(dbs('unicorns', String.prototype.replace, ['uni', '']), 'corns');
+  t.is(dbs('uNICorns', String.prototype.toLowerCase), 'unicorns');
 });
-//
-// test('#basicArrayRemove', t => {
-//   t.same(dbs('uni', ['unicorns']), ['corns']);
-//   t.same(dbs('a', ['HackCU', 'apple']), ['HckCU', 'pple']);
-// });
-//
-// test('#nestedArrayRemove', t => {
-//   t.same(dbs('uni', [['unicorns']]), [['corns']]);
-//   t.same(dbs('a', [['HackCU'], 'apple']), [['HckCU'], 'pple']);
-//   t.same(dbs('a', [['HackCU'], 'apple', 3, null]), [['HckCU'], 'pple', 3, null]);
-// });
-//
+
+test('#basicArrayFunctions', t => {
+  t.same(dbs(['UNIcorns'], String.prototype.toLowerCase), ['unicorns']);
+  t.same(dbs(['unicorns'], String.prototype.replace, ['uni', '']), ['corns']);
+  t.same(dbs(['uNICorns'], String.prototype.toLowerCase), ['unicorns']);
+});
+
+test('#basicArrayFunctions', t => {
+  t.same(dbs([['UNIcorns']], String.prototype.toLowerCase), [['unicorns']]);
+  t.same(dbs([[['unicorns'], ['unicycle']]], String.prototype.replace, ['uni', '']), [[['corns'], ['cycle']]]);
+});
+
 // test('#basicObjectRemove', t => {
 //   t.same(dbs('uni', {unicorns: 'unicorns'}), {corns: 'corns'});
 // });
