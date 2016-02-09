@@ -1,0 +1,40 @@
+{
+  "name": "deep-blue-string",
+  "version": "0.0.0",
+  "description": "Apply function to strings deep within data types",
+  "license": "MIT",
+  "repository": "dawsonbotsford/deep-blue-string",
+  "author": {
+    "name": "dawsonbotsford",
+    "email": "dawsonbotsford@gmail.com",
+    "url": "dawsonbotsford.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {
+    "arrify": "^1.0.1",
+    "partial": "0.0.3"
+  },
+  "devDependencies": {
+    "ava": "^0.11.0",
+    "xo": "^0.12.1",
+    "eslint-config-xo-space": "^0.8.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "eslintConfig": {
+      "extends": "xo-space"
+    }
+  }
+}
