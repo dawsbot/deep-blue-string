@@ -14,6 +14,7 @@ const main = function (target, fn, fnArgs) {
   }
 
   // Arguments are all valid here
+  // TODO: Replace all occurrences in string using regex. example: http://www.w3schools.com/jsref/jsref_obj_regexp.asp
   if (typeof target === 'string') {
     return fn.apply(target, arrify(fnArgs));
   }
