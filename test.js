@@ -46,11 +46,12 @@ test('#basicArrayFunctions', t => {
   t.same(dbs(['uNICorns'], String.prototype.toLowerCase), ['unicorns']);
 });
 
-test('#basicArrayFunctions', t => {
+test('#complexArrayFunctions', t => {
   t.same(dbs([['UNIcorns']], String.prototype.toLowerCase), [['unicorns']]);
   t.same(dbs([[['unicorns'], ['unicycle']]], String.prototype.replace, ['uni', '']), [[['corns'], ['cycle']]]);
 });
 
-// test('#basicObjectRemove', t => {
-//   t.same(dbs('uni', {unicorns: 'unicorns'}), {corns: 'corns'});
-// });
+test('#basicObjectRemove', t => {
+  t.same(dbs({unicorns: 'unicycle'}, String.prototype.replace, ['uni', '']), {corns: 'cycle'});
+  t.same(dbs({unicorns: 'unicycle', unit: 'university'}, String.prototype.replace, ['uni', '']), {corns: 'cycle', t: 'versity'});
+});

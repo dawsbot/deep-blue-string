@@ -1,6 +1,6 @@
-/* eslint no-extend-native:0, no-use-extend-native/no-use-extend-native:0 */
+/* guide-for-in:0 */
 'use strict';
-const gimey = require('gimey');
+// const gimey = require('gimey');
 
 const main = function (target, fn, fnArgs) {
   if (typeof fn !== 'function') {
@@ -19,26 +19,20 @@ const main = function (target, fn, fnArgs) {
     });
   }
 
-  // // target is of type object
-  // if (typeof target === 'object') {
-  //   for (const key in target) {
-  //     // skip loop if the property is from prototype
-  //     if (!target.hasOwnProperty(key)) {
-  //       continue;
-  //     }
-  //
-  //     const obj = target[key];
-  //     for (const prop in obj) {
-  //       // skip loop if the property is from prototype
-  //       if (!obj.hasOwnProperty(prop)) {
-  //         continue;
-  //       }
-  //
-  //       // your code
-  //       console.log(`${prop} = ${obj[prop]}`);
-  //     }
-  //   }
-  // }
+  // target is of type object
+  if (typeof target === 'object') {
+    const values = Object.keys(target).map(k => {
+      return target[k];
+    });
+    const keys = Object.keys(target);
+    // let values = Object.values(target);
+
+    const obj = {};
+    keys.forEach((key, i) => {
+      obj[main(key, fn, fnArgs)] = main(values[i], fn, fnArgs).toString();
+    });
+    return obj;
+  }
 
   // Fail silently and return original target if of unsupported data type
   return target;
