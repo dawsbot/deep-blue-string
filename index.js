@@ -1,25 +1,29 @@
 /* guide-for-in:0 */
-'use strict';
+const arrify = require('arrify');
 // const gimey = require('gimey');
 
 const main = function (target, fn, fnArgs) {
+  if (arguments.length < 2) {
+    throw new Error(`Expected >= 2 arguments, got ${arguments.length}`);
+  }
   if (typeof fn !== 'function') {
-    throw new TypeError(`Expected a function for arg2, got ${typeof fn}`);
+    throw new TypeError(`Expected typeof arg2 === function, got ${typeof fn}`);
+  }
+  if (typeof fnArgs !== 'undefined' && !Array.isArray(fnArgs) && typeof fnArgs !== 'string') {
+    throw new TypeError(`Expected typeof arg3 === Array || String, got ${typeof fn}`);
   }
 
-  // target is of type string
+  // Arguments are all valid here
   if (typeof target === 'string') {
-    return fn.apply(target, fnArgs);
+    return fn.apply(target, arrify(fnArgs));
   }
 
-  // target is of type array
   if (Array.isArray(target)) {
     return target.map(elem => {
       return main(elem, fn, fnArgs);
     });
   }
 
-  // target is of type object
   if (typeof target === 'object') {
     const values = Object.keys(target).map(k => {
       return target[k];
@@ -34,7 +38,6 @@ const main = function (target, fn, fnArgs) {
     return obj;
   }
 
-  // Fail silently and return original target if of unsupported data type
   return target;
 };
 

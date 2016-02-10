@@ -1,43 +1,30 @@
 import test from 'ava';
 import dbs from './';
 
-test('#invalidTarget', t => {
+test('#throws', t => {
   t.throws(() => {
-    dbs(false, 'HackCU');
-  });
+    dbs();
+  }, Error, `Expected >= 2 arguments, got ${arguments.length}`);
   t.throws(() => {
-    dbs(null, 'HackCU');
-  });
-  t.throws(() => {
-    dbs(undefined, 'HackCU');
-  });
-  t.throws(() => {
-    dbs(123, 'HackCU');
-  });
-  t.throws(() => {
-    dbs({}, 'HackCU');
-  });
-  t.throws(() => {
-    dbs('', 'HackCU');
-  });
-});
+    dbs(true);
+  }, Error, `Expected >= 2 arguments, got ${arguments.length}`);
 
-// test('#emptyPattern', t => {
-//   t.is(dbs(returnFunc, 'unicorns'), 'unicorns');
-//   t.same(dbs(returnFunc, ['unicorns', 'HackCU']), ['unicorns', 'HackCU']);
-// });
-//
-// test('#invalidTarget', t => {
-//   t.is(dbs(returnFunc, false), false);
-//   t.is(dbs(returnFunc, null), null);
-//   t.is(dbs(returnFunc, undefined), undefined);
-//   t.is(dbs(returnFunc, 123), 123);
-// });
+  t.throws(() => {
+    dbs(false, '');
+  }, TypeError, 'Expected typeof arg2 === function, got String');
+
+  t.throws(() => {
+    dbs(false, () => {
+      return false;
+    }, false);
+  }, TypeError, `Expected typeof arg3 === Array || String, got boolean`);
+});
 
 test('#stringFunctions', t => {
   t.is(dbs('UNIcorns', String.prototype.toLowerCase), 'unicorns');
   t.is(dbs('unicorns', String.prototype.replace, ['uni', '']), 'corns');
   t.is(dbs('uNICorns', String.prototype.toLowerCase), 'unicorns');
+  t.is(dbs('uni', String.prototype.repeat, [3]), 'uniuniuni');
 });
 
 test('#basicArrayFunctions', t => {
@@ -51,7 +38,13 @@ test('#complexArrayFunctions', t => {
   t.same(dbs([[['unicorns'], ['unicycle']]], String.prototype.replace, ['uni', '']), [[['corns'], ['cycle']]]);
 });
 
-test('#basicObjectRemove', t => {
+test('#basicObjectFunctions', t => {
   t.same(dbs({unicorns: 'unicycle'}, String.prototype.replace, ['uni', '']), {corns: 'cycle'});
+  t.same(dbs({unicorns: 'unicycle'}, String.prototype.toUpperCase), {UNICORNS: 'UNICYCLE'});
   t.same(dbs({unicorns: 'unicycle', unit: 'university'}, String.prototype.replace, ['uni', '']), {corns: 'cycle', t: 'versity'});
+});
+
+test('#complexMixedDatatypeFunctions', t => {
+  t.same(dbs([{unicorns: 'unicycle'}], String.prototype.replace, ['uni', '']), [{corns: 'cycle'}]);
+  t.same(dbs(['hackcu', {unicorns: 'unicycle'}, 'test'], String.prototype.toUpperCase), ['HACKCU', {UNICORNS: 'UNICYCLE'}, 'TEST']);
 });
