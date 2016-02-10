@@ -19,7 +19,20 @@
     "index.js"
   ],
   "keywords": [
-    ""
+    "string",
+    "replace",
+    "prototype",
+    "censor",
+    "filter",
+    "recursive",
+    "objects",
+    "nested",
+    "utility",
+    "coffeecode",
+    "tested",
+    "documented",
+    "ava",
+    "dawson"
   ],
   "dependencies": {
     "arrify": "^1.0.1",
