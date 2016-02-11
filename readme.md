@@ -42,7 +42,30 @@ Type: Any
 
 Type: `function`
 
+##### fnArgs
+
+Type: `string` || `array`<br>
+fnArgs description: If the user inputted function takes arguments, supply them here.
+
+#### Function overview
 Apply function to all strings in `target`. Deeply nested strings will be found and operated on. No casting will be done on inputted `target`.
+
+<br>
+
+## Features
+Supported `target` Data Types:
+- [ ] Number	("number")
+- [x] String	("string")
+- [ ] Boolean	("boolean")
+- [ ] Undefined	("undefined")
+- [ ] Null	("object")
+- [ ] Symbol ("symbol")
+- [ ] Function ("function")
+
+<br>
+Supported `function` Types:
+- [x] String prototype methods
+- [ ] console.log
 
 <br>
 

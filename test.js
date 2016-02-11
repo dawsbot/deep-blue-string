@@ -20,6 +20,11 @@ test('#throws', t => {
   }, TypeError, `Expected typeof arg3 === Array || String, got boolean`);
 });
 
+test.only('#regexFunctions', t => {
+  t.is(dbs('yoo', String.prototype.replace, [/o/g, '']), 'y');
+  // TODO: test String.prototype.search
+});
+
 test('#stringFunctions', t => {
   t.is(dbs('UNIcorns', String.prototype.toLowerCase), 'unicorns');
   t.is(dbs('unicorns', String.prototype.replace, ['uni', '']), 'corns');
