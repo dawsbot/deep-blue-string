@@ -20,7 +20,7 @@ test('#throws', t => {
   }, TypeError, `Expected typeof arg3 === Array || String, got boolean`);
 });
 
-test.only('#regexFunctions', t => {
+test('#regexFunctions', t => {
   t.is(dbs('yoo', String.prototype.replace, [/o/g, '']), 'y');
   // TODO: test String.prototype.search
 });
