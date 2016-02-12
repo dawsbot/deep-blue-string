@@ -68,11 +68,3 @@ test('#dontModifyTargetNatives', t => {
   };
   t.same(dbs(emptyFunc, String.prototype.replace, ['t', '']), emptyFunc);
 });
-
-/*
-test('#dontModifyTargetObjects', t => {
-  // Don't modify native types
-  const date = new Date();
-  t.same(dbs(date, String.prototype.toUpperCase), date);
-});
-*/
