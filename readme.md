@@ -1,6 +1,6 @@
 # deep-blue-string [![Build Status](https://travis-ci.org/dawsonbotsford/deep-blue-string.svg?branch=master)](https://travis-ci.org/dawsonbotsford/deep-blue-string) [![npm version](https://badge.fury.io/js/deep-blue-string.svg)](https://badge.fury.io/js/deep-blue-string)
 
-> Apply prototypes to strings deep in data types
+> Apply prototype funtions to strings deep in data types
 
 <br>
 
