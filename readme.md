@@ -23,7 +23,7 @@ npm install --save deep-blue-string
 const dbs = require('deep-blue-string');
 
 //Sanitize any data type
-dbs({userInput: 'DROP TABLE admin', String.prototype.replace, ['DROP TABLE', 'not in my house']);
+dbs({userInput: 'DROP TABLE admin'}, String.prototype.replace, ['DROP TABLE', 'not in my house']);
 //=> {userInput: 'not in my house admin'}
 ```
 
