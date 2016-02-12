@@ -1,6 +1,6 @@
 {
   "name": "deep-blue-string",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Apply function to strings deep within data types",
   "license": "MIT",
   "repository": "dawsonbotsford/deep-blue-string",
