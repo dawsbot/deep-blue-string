@@ -1,3 +1,4 @@
+/* eslint no-new-object:0 */
 import test from 'ava';
 import dbs from './';
 
@@ -30,11 +31,13 @@ test('#stringFunctions', t => {
   t.is(dbs('unicorns', String.prototype.replace, ['uni', '']), 'corns');
   t.is(dbs('uni', String.prototype.repeat, [3]), 'uniuniuni');
   t.is(dbs('yoo', String.prototype.search, /o/g), 1);
+  t.is(dbs(new Object('yoo'), String.prototype.search, /o/g), 1);
 });
 
 test('#basicArrayFunctions', t => {
   t.same(dbs(['UNIcorns'], String.prototype.toLowerCase), ['unicorns']);
   t.same(dbs(['unicorns'], String.prototype.replace, ['uni', '']), ['corns']);
+  t.same(dbs(new Object(['unicorns']), String.prototype.replace, ['uni', '']), new Object(['corns']));
 });
 
 test('#complexArrayFunctions', t => {
@@ -58,10 +61,8 @@ test('#dontModifyTargetNatives', t => {
   t.same(dbs(true, String.prototype.replace, ['t', '']), true);
   t.same(dbs(undefined, String.prototype.replace, ['u', '']), undefined);
   t.same(dbs(null, String.prototype.replace, ['u', '']), null);
-
   const sym = Symbol('test');
   t.same(dbs(sym, String.prototype.replace, ['t', '']), sym);
-
   const emptyFunc = () => {
     return true;
   };

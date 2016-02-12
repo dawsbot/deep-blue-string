@@ -1,5 +1,6 @@
 /* guide-for-in:0 */
 const arrify = require('arrify');
+const objectTypes = require('object-types');
 // const gimey = require('gimey');
 
 const main = function (target, fn, fnArgs) {
@@ -13,18 +14,20 @@ const main = function (target, fn, fnArgs) {
     throw new TypeError(`Expected typeof arg3 === Array || String, got ${typeof fn}`);
   }
 
+  const isObj = typeof target === 'object';
+
   // Arguments are all valid here
-  if (typeof target === 'string') {
+  if (typeof target === 'string' || (isObj && objectTypes(target) === 'string')) {
     return fn.apply(target, arrify(fnArgs));
   }
 
-  if (Array.isArray(target)) {
+  if (Array.isArray(target) || (isObj && objectTypes(target) === 'array')) {
     return target.map(elem => {
       return main(elem, fn, fnArgs);
     });
   }
 
-  if (typeof target === 'object' && target !== null) {
+  if (typeof target === 'object' && objectTypes(target) === 'object') {
     const values = Object.keys(target).map(k => {
       return target[k];
     });
