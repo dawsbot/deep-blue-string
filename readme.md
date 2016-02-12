@@ -36,36 +36,45 @@ dbs('DROP TABLE admin', String.prototype.replace, ['DROP TABLE', 'not in my hous
 
 ##### target
 
-Type: Any
+*Required*  
+Type: Any  
 
 ##### function
 
+*Required*  
 Type: `function`
 
 ##### fnArgs
 
-Type: `string` || `array`<br>
-fnArgs description: If the user inputted function takes arguments, supply them here.
+*Optional*  
+Type: `string` || `array`  
+Description: If the user inputted function takes arguments, supply them here. For multiple arguments (like `String.prototype.replace`, input them as an array).
 
 #### Function overview
+
 Apply function to all strings in `target`. Deeply nested strings will be found and operated on. No casting will be done on inputted `target`.
 
 <br>
 
 ## Features
-Supported `target` Data Types:
-- [ ] Number	("number")
-- [x] String	("string")
-- [ ] Boolean	("boolean")
-- [ ] Undefined	("undefined")
-- [ ] Null	("object")
-- [ ] Symbol ("symbol")
-- [ ] Function ("function")
 
-<br>
-Supported `function` Types:
-- [x] String prototype methods
-- [ ] console.log
+Supported `target` Data Types:
+- [x] String
+- [x] Array
+- [ ] Objects
+  - [ ] Object object
+  - [ ] Strings as objects
+  - [ ] Numbers as objects
+  - [ ] Booleans as objects
+  - [ ] Arrays as objects
+  - [ ] Regex	as objects
+  - [ ] Function as objects
+  - [ ] Date objects
+- [x] Number	(returned unmodified)
+- [x] Boolean	(returned unmodified)
+- [x] Undefined (returned unmodified)
+- [x] Function (returned unmodified)
+- [x] Symbol (returned unmodified)
 
 <br>
 

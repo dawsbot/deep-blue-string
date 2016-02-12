@@ -9,12 +9,11 @@ const main = function (target, fn, fnArgs) {
   if (typeof fn !== 'function') {
     throw new TypeError(`Expected typeof arg2 === function, got ${typeof fn}`);
   }
-  if (typeof fnArgs !== 'undefined' && !Array.isArray(fnArgs) && typeof fnArgs !== 'string') {
+  if (typeof fnArgs !== 'undefined' && !Array.isArray(fnArgs) && typeof fnArgs !== 'string' && typeof fnArgs !== 'object') {
     throw new TypeError(`Expected typeof arg3 === Array || String, got ${typeof fn}`);
   }
 
   // Arguments are all valid here
-  // TODO: Replace all occurrences in string using regex. example: http://www.w3schools.com/jsref/jsref_obj_regexp.asp
   if (typeof target === 'string') {
     return fn.apply(target, arrify(fnArgs));
   }
@@ -25,7 +24,7 @@ const main = function (target, fn, fnArgs) {
     });
   }
 
-  if (typeof target === 'object') {
+  if (typeof target === 'object' && target !== null) {
     const values = Object.keys(target).map(k => {
       return target[k];
     });
