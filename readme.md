@@ -2,6 +2,9 @@
 
 > Apply prototypes to strings deep in data types
 
+<br>
+
+![logo](logo.jpg)
 
 <br>
 
@@ -19,13 +22,9 @@ npm install --save deep-blue-string
 ```js
 const dbs = require('deep-blue-string');
 
-//Censor data for dangerous sql strings
-dbs('DROP TABLE admin', String.prototype.replace, ['DROP TABLE', 'not in my house']);
-//=> 'not in my house admin'
-
-
-
-
+//Sanitize any data type
+dbs({userInput: 'DROP TABLE admin', String.prototype.replace, ['DROP TABLE', 'not in my house']);
+//=> {userInput: 'not in my house admin'}
 ```
 
 <br>
@@ -59,22 +58,28 @@ Apply function to all strings in `target`. Deeply nested strings will be found a
 ## Features
 
 Supported `target` Data Types:
-- [x] String
-- [x] Array
-- [ ] Objects
-  - [ ] Object object
-  - [ ] Strings as objects
-  - [ ] Numbers as objects
-  - [ ] Booleans as objects
-  - [ ] Arrays as objects
-  - [ ] Regex	as objects
-  - [ ] Function as objects
-  - [ ] Date objects
-- [x] Number	(returned unmodified)
-- [x] Boolean	(returned unmodified)
-- [x] Undefined (returned unmodified)
-- [x] Function (returned unmodified)
-- [x] Symbol (returned unmodified)
+* String
+* Array
+* Objects
+  * Object object
+  * Strings as objects
+  * Arrays as objects
+  * Numbers as objects (returned unmodified)
+  * Booleans as objects (returned unmodified)
+  * Regex	as objects (returned unmodified)
+  * Function as objects (returned unmodified)
+  * Date objects   (returned unmodified)
+* Number	(returned unmodified)
+* Boolean	(returned unmodified)
+* Undefined (returned unmodified)
+* Function (returned unmodified)
+* Symbol (returned unmodified)
+
+<br>
+
+## Related
+* [object-types](https://github.com/dawsonbotsford/object-types)
+* [hugg](https://github.com/dawsonbotsford/hugg)
 
 <br>
 

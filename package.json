@@ -1,6 +1,6 @@
 {
   "name": "deep-blue-string",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Apply function to strings deep within data types",
   "license": "MIT",
   "repository": "dawsonbotsford/deep-blue-string",
@@ -37,6 +37,7 @@
   "dependencies": {
     "arrify": "^1.0.1",
     "gimey": "0.0.0",
+    "object-types": "0.0.0",
     "partial": "0.0.3"
   },
   "devDependencies": {
