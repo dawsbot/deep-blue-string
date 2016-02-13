@@ -1,7 +1,6 @@
 /* guide-for-in:0 */
 const arrify = require('arrify');
 const objectTypes = require('object-types');
-// const gimey = require('gimey');
 
 const main = function (target, fn, fnArgs) {
   if (arguments.length < 2) {
