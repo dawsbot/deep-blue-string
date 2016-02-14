@@ -30,16 +30,12 @@ const main = function (target, fn, fnArgs) {
   }
 
   if (targetType === 'object' && objectTypes(target) === 'object') {
-    const values = Object.keys(target).map(k => {
-      return target[k];
-    });
-    const keys = Object.keys(target);
-    // let values = Object.values(target);
-
     const obj = {};
-    keys.forEach((key, i) => {
-      obj[main(key, fn, fnArgs)] = main(values[i], fn, fnArgs).toString();
+    const keys = Object.keys(target);
+    keys.forEach(key => {
+      obj[main(key, fn, fnArgs)] = main(target[key], fn, fnArgs).toString();
     });
+
     return obj;
   }
 
