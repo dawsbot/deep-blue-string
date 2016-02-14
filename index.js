@@ -3,20 +3,23 @@ const arrify = require('arrify');
 const objectTypes = require('object-types');
 
 const main = function (target, fn, fnArgs) {
+  const targetType = typeof target;
+  const isObj = targetType === 'object';
+  const fnType = typeof fn;
+  const fnArgsType = typeof fnArgs;
+
   if (arguments.length < 2) {
     throw new Error(`Expected >= 2 arguments, got ${arguments.length}`);
   }
-  if (typeof fn !== 'function') {
-    throw new TypeError(`Expected typeof arg2 === function, got ${typeof fn}`);
+  if (fnType !== 'function') {
+    throw new TypeError(`Expected typeof arg2 === function, got ${fnType}`);
   }
-  if (typeof fnArgs !== 'undefined' && !Array.isArray(fnArgs) && typeof fnArgs !== 'string' && typeof fnArgs !== 'object') {
-    throw new TypeError(`Expected typeof arg3 === Array || String, got ${typeof fn}`);
+  if (fnArgsType !== 'undefined' && !Array.isArray(fnArgs) && fnArgsType !== 'string' && fnArgsType !== 'object') {
+    throw new TypeError(`Expected typeof arg3 === Array || String, got ${fnType}`);
   }
-
-  const isObj = typeof target === 'object';
 
   // Arguments are all valid here
-  if (typeof target === 'string' || (isObj && objectTypes(target) === 'string')) {
+  if (targetType === 'string' || (isObj && objectTypes(target) === 'string')) {
     return fn.apply(target, arrify(fnArgs));
   }
 
@@ -26,7 +29,7 @@ const main = function (target, fn, fnArgs) {
     });
   }
 
-  if (typeof target === 'object' && objectTypes(target) === 'object') {
+  if (targetType === 'object' && objectTypes(target) === 'object') {
     const values = Object.keys(target).map(k => {
       return target[k];
     });
